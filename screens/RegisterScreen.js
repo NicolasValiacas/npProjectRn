@@ -1,17 +1,36 @@
 import { StyleSheet, View } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useLayoutEffect, useRef} from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Input, Text, Button } from 'react-native-elements';
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from '../firebase'
 
 const RegisterScreen = ({ navigation }) => {
-    const [name, setName] = useState('');
+    const [fullname, setFullname] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [imageUrl, setImageUrl] = useState('');
 
-    const register = () =>{
 
-    };
+    useLayoutEffect(() => {
+        navigation.setOptions({
+          headerBackTitle: 'Back To Login',
+        })
+      }, [navigation])
+
+      const register = () => {
+        const auth = getAuth()
+        createUserWithEmailAndPassword(auth, email, password)
+          .then((authUser) => {
+            const user = authUser.user
+            updateProfile(user, {
+              displayName: fullname,
+              photoURL: imgurl,
+            })
+              .then(() => console.log('Profile Updated!'))
+              .catch((error) => console.log(error.message))
+          })
+          .catch((error) => alert(error.message))
+      }
 
   return (
     <View behavior='padding' style={styles.container}>
@@ -28,8 +47,8 @@ const RegisterScreen = ({ navigation }) => {
             placeholder='Full Name' 
             autoFocus
             type='text' 
-            value={name}
-            onChangeText={(text) => setName(text)} 
+            value={fullname}
+            onChangeText={(text) => setFullname(text)} 
             />
 
             <Input 
@@ -48,7 +67,7 @@ const RegisterScreen = ({ navigation }) => {
             />
 
             <Input 
-            placeholder='Profile Picture (Optional)' 
+            placeholder='Profile Picture URL (Optional)' 
             type='text' 
             value={imageUrl}
             onChangeText={(text) => setImageUrl(text)} 
@@ -57,8 +76,10 @@ const RegisterScreen = ({ navigation }) => {
             
             <Button
             containerStyle={styles.reg}
+            raised
             onPress={register} 
             title='Register'
+
             />
 
         </View>
@@ -70,7 +91,7 @@ export default RegisterScreen;
 
 const styles = StyleSheet.create({
     create: {
-        marginBottom: 50,
+        marginBottom: 20,
         height: 100, 
     },
     container: {
@@ -84,8 +105,8 @@ const styles = StyleSheet.create({
         width: 300,
         marginTop: 10,
     },
-    reg: {
-    
+    reg:{
+        backgroundColor: '#f4511e'
     },
 
 });

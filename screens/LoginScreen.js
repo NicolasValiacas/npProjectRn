@@ -1,16 +1,28 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
-import React, { useState } from 'react';
+import { StyleSheet, View, Image } from 'react-native';
+import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Input } from 'react-native-elements';
 import { Button } from 'react-native-elements/dist/buttons/Button';
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from '../firebase'
 
 const LoginScreen = ({ navigation }) => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState ('');
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const auth = getAuth()
 
-    const signIn = () => {
-
-    }
+    useEffect(
+        () =>
+          onAuthStateChanged(auth, (user) => {
+            if (user) navigation.replace('Home')
+          }),
+        []
+      )
+    
+      const signIn = () => {
+        signInWithEmailAndPassword(auth, email, password).catch((error) =>
+          console.log(error.message)
+        )
+      }
 
     return (
     <View style={styles.container}>
@@ -37,9 +49,10 @@ const LoginScreen = ({ navigation }) => {
             type='password' 
             value={password}
             onChangeText={(text) => setPassword(text)} 
+            onSubmitEditing={signIn}
             />
             
-        </View>
+        </View >
 
         <Button 
         containerStyle={styles.reg} 
@@ -48,10 +61,10 @@ const LoginScreen = ({ navigation }) => {
         />
 
         <Button 
-        onPress={() => navigation.navigate('Register')} 
         containerStyle={styles.button} 
+        onPress={() => navigation.navigate('Register')} 
         type='outline' 
-        title='Register'
+        title='Registers'
         />
 
     </View>
@@ -73,12 +86,12 @@ const styles = StyleSheet.create({
         width: 300,
     },
     button: {
-        width: 200,
+        width: 250,
         marginTop: 10, 
     },
     reg: {
-        width: 200,
+        width: 250,
         marginBottom: 10,
         backgroundColor: '#f4511e',
-    }
+    },
 });
