@@ -39,8 +39,8 @@ const HomeScreen = ({ navigation }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       title: 'SwartzChat',
-      headerStyle: { backgroundColor: '#FFF' },
-      headerTitleStyle: { color: 'black' },
+      headerStyle: { backgroundColor: '#f4511e' },
+      headerTitleStyle: { color: 'white' },
       headerTintColor: 'black',
       headerLeft: () => (
         <View style={{ marginLeft: 10 }}>
@@ -56,7 +56,7 @@ const HomeScreen = ({ navigation }) => {
             width: 90,
             flexDirection: 'row',
             justifyContent: 'space-between',
-            backgroundColor: 'white'
+            backgroundColor: '#f4511e'
           }}
         >
           <TouchableOpacity activeOpacity={0.5}>

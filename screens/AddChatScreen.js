@@ -1,6 +1,7 @@
 import React, { useLayoutEffect, useState } from 'react'
 import { StyleSheet, KeyboardAvoidingView } from 'react-native'
-import { Button, Input } from 'react-native-elements'
+import { Input } from 'react-native-elements'
+import { Button } from 'react-native-elements/dist/buttons/Button';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { collection, addDoc, getFirestore } from '../firebase'
 
@@ -34,7 +35,11 @@ const AddChatScreen = ({ navigation }) => {
           <Icon name="wechat" size={18} type="antdesign" color="black" />
         }
       />
-      <Button disabled={!chat} onPress={createChat} title="Create New Chat" />
+      <Button 
+      containerStyle={styles.reg}
+      disabled={!chat} 
+      onPress={createChat} 
+      title="Create New Chat" />
     </KeyboardAvoidingView>
   )
 }
@@ -46,5 +51,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     padding: 30,
     height: '100%',
+  },
+  reg: {
+    backgroundColor: '#f4511e',
   },
 })

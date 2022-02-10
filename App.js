@@ -63,7 +63,18 @@ export default function App() {
 
         <Stack.Screen 
         name="AddChat" 
-        component={AddChatScreen} />
+        component={AddChatScreen} 
+        options={{
+          headerStyle: {
+            backgroundColor: '#f4511e',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+          headerTitleAlign: 'center',
+        }}
+        />
         </Stack.Navigator>
 
     </NavigationContainer>
