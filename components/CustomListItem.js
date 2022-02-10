@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import { ListItem, Avatar } from 'react-native-elements/dist/list/ListItem';
+import { ListItem, Avatar } from 'react-native-elements';
 
 const CustomListItem = () => {
   return (
@@ -8,7 +8,7 @@ const CustomListItem = () => {
       <Avatar
       rounded
       source={{
-          url: 
+          uri: 
           'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
       }}
       />

@@ -1,6 +1,6 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView} from 'react-native';
 import React from 'react';
-import { ScrollView } from 'react-native';
+import {  } from 'react-native';
 import CustomListItem from '../components/CustomListItem';
 
 const HomeScreen = () => {
