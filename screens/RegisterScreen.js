@@ -25,7 +25,7 @@ const RegisterScreen = ({ navigation }) => {
             const user = authUser.user
             updateProfile(user, {
               displayName: fullname,
-              photoURL: imgurl,
+              photoURL: imageUrl,
             })
               .then(() => console.log('Profile Updated!'))
               .catch((error) => console.log(error.message))
