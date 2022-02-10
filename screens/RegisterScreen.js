@@ -1,7 +1,8 @@
 import { StyleSheet, View } from 'react-native';
 import React, { useState, useLayoutEffect, useRef} from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Input, Text, Button } from 'react-native-elements';
+import { Input, Text } from 'react-native-elements';
+import { Button } from 'react-native-elements/dist/buttons/Button';
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from '../firebase'
 
 const RegisterScreen = ({ navigation }) => {
@@ -76,10 +77,8 @@ const RegisterScreen = ({ navigation }) => {
             
             <Button
             containerStyle={styles.reg}
-            raised
             onPress={register} 
             title='Register'
-
             />
 
         </View>
@@ -106,7 +105,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
     reg:{
-        backgroundColor: '#f4511e'
+      backgroundColor: '#f4511e',
     },
 
 });

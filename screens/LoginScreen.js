@@ -31,7 +31,7 @@ const LoginScreen = ({ navigation }) => {
         
         <Image 
         source={require('../Images/Connect.png')} 
-        style={{ width: 200, height: 200 }}
+        style={{ width: 200, height: 200, marginBottom: 50}}
         />
 
         <View style={styles.inputContainer}>
